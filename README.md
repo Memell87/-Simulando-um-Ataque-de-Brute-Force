@@ -1,3 +1,5 @@
+<img width="945" height="656" alt="medusa py" src="https://github.com/user-attachments/assets/2177dd44-d6c7-4e18-aea8-f060e8b45d68" />
+<img width="945" height="656" alt="wordlist py" src="https://github.com/user-attachments/assets/c29f3494-4b91-4910-9642-c0c64933bb5a" />
 🛡️ Auditoria de Segurança: Força Bruta com Medusa e Automação em Python
 
 📝 Descrição do Desafio
