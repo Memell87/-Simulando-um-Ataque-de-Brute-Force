@@ -1,69 +1,64 @@
-# Medusa-e-Python
-Teste de Força Bruta com Medusa e Python
-🛡️ Auditoria de Segurança: Teste de Força Bruta com Medusa e Python
-📖 Sobre o Projeto
-Este repositório contém a documentação e os scripts desenvolvidos para o desafio prático de Cibersegurança da DIO. O objetivo principal foi simular ataques de força bruta (Brute Force) em serviços de rede (FTP) dentro de um ambiente controlado, utilizando ferramentas de auditoria e automação personalizada.
+🛡️ Auditoria de Segurança: Força Bruta com Medusa e Automação em Python
+📝 Descrição do Desafio
+Este projeto foi desenvolvido como parte de um desafio prático na DIO (Digital Innovation One). O objetivo é simular ataques de força bruta (Brute Force) em um ambiente controlado para entender vulnerabilidades comuns e implementar medidas de mitigação eficazes.
 
-🧪 Cenário de Teste
-O laboratório foi montado em um ambiente virtual isolado para garantir a segurança dos testes:
+O laboratório consiste em uma rede isolada utilizando VirtualBox, com o Kali Linux como máquina atacante e o Metasploitable 2 como alvo vulnerável.
 
-Atacante: Kali Linux (IP: Automático).
+🛠️ Tecnologias e Ferramentas
+Sistema Operacional Atacante: Kali Linux.
 
-Alvo: Metasploitable 2 (IP: 192.168.56.101).
+Máquina Alvo: Metasploitable 2 (Ambiente intencionalmente vulnerável).
 
-Rede: Host-only (Exclusiva de hospedeiro) configurada no VirtualBox.
+Ferramenta de Ataque: Medusa (Ferramenta modular de força bruta rápida).
 
-🛠️ Ferramentas Utilizadas
-Medusa: Ferramenta modular e rápida para ataques de força bruta em diversos protocolos.
+Automação: Script em Python 3 para geração de wordlists customizadas.
 
-Python 3: Utilizado para criar um script de geração de wordlists customizadas.
+Virtualização: Oracle VirtualBox com rede Host-Only.
 
-Nmap: Varredura inicial de portas e serviços.
+🚀 Implementação Passo a Passo
+1. Configuração do Ambiente
+As máquinas virtuais foram configuradas em uma rede exclusiva de hospedeiro (Host-only) para garantir que os testes fossem realizados em um ambiente seguro e isolado da rede externa.
 
-VirtualBox: Orquestração das máquinas virtuais.
+Foi realizada uma varredura de rede com nmap para identificar serviços ativos e portas abertas no IP do alvo.
 
-🚀 Implementação
-1. Automação com Python
-Como parte do desenvolvimento do projeto, criei um script chamado gerar_wordlist.py. Este script gera combinações de senhas baseadas em palavras-chave e padrões numéricos, otimizando o processo de auditoria.
+2. Automação com Python (Geração de Wordlist)
+Para aumentar a eficiência do ataque, desenvolvi um script em Python que gera combinações inteligentes de senhas. O script utiliza a biblioteca itertools para criar permutações entre palavras-chave, números e caracteres especiais.
 
 Python
-# Exemplo de lógica utilizada
 import itertools
-# Gera combinações entre palavras-chave e números comuns
-2. Execução do Medusa
-Utilizei o Medusa para testar a wordlist gerada contra o serviço FTP do alvo. Durante os testes, explorei diferentes parâmetros da ferramenta:
+import time
+
+# O script solicita inputs do usuário e gera combinações 
+# baseadas em lógica de permutação de dados conhecidos.
+combinacoes = list(itertools.product(palavras, numeros, caracteres))
+3. Execução do Ataque com Medusa
+Com a wordlist gerada, utilizei o Medusa para testar as credenciais contra o serviço FTP do Metasploitable 2:
 
 Bash
-# Comando para testar wordlist customizada
 medusa -h 192.168.56.101 -u msfadmin -P wordlist_custom.txt -M ftp
+Resultado: O ataque identificou com sucesso a credencial msfadmin:msfadmin.
 
-# Comando para testar variações de usuário e senha (Success Case)
-medusa -h 192.168.56.101 -u msfadmin -e ns -M ftp
-📈 Resultados Obtidos
-Identificação de Vulnerabilidade: O sistema alvo permitia o acesso com credenciais idênticas (usuário: msfadmin / senha: msfadmin).
+💡 Destaques Técnicos
+Como estudante de Análise e Desenvolvimento de Sistemas (ADS), foquei em boas práticas de desenvolvimento e administração de sistemas:
 
-Validação de Automação: O script Python reduziu o tempo de criação de dicionários de senhas focados no alvo.
+Criação de Arquivos via Terminal: Utilizei o comando cat << 'EOF' para criar o script diretamente no terminal do Kali, garantindo a integridade do código e evitando problemas de formatação entre diferentes sistemas operacionais.
 
-Logs de Auditoria: Conforme demonstrado nas capturas de tela (pasta /images), o Medusa reportou com sucesso quando a conta foi encontrada.
+Medição de Performance: Adicionei a biblioteca time ao script Python para medir o tempo de execução da geração das senhas, demonstrando preocupação com a eficiência algorítmica.
 
-🛡️ Recomendações de Mitigação
-Para evitar os ataques simulados neste projeto, recomenda-se:
+🛡️ Medidas de Mitigação Recomendadas
+Para prevenir este tipo de vulnerabilidade em ambientes reais, as recomendações são:
 
-Políticas de Complexidade: Proibir senhas iguais ao nome de usuário ou termos comuns.
+Políticas de Senhas: Implementar requisitos de complexidade (mínimo de caracteres, uso de símbolos) e rotação periódica.
 
-Bloqueio de IP (Rate Limiting): Implementar ferramentas como o Fail2Ban para bloquear tentativas sucessivas de login falhas.
+Bloqueio de Conta (Rate Limiting): Utilizar ferramentas como Fail2Ban para bloquear temporariamente IPs que excedam um número limite de tentativas de login.
 
-Desativação de Protocolos Inseguros: Substituir o FTP por alternativas criptografadas como SFTP ou SSH.
+Autenticação Multi-fator (MFA): Adicionar uma camada extra de segurança que invalida ataques baseados apenas em senhas.
+
+Desativação de Serviços Inseguros: Desabilitar protocolos que trafegam dados em texto claro (como FTP) e substituí-los por versões seguras (SFTP/SSH).
 
 👤 Autor
-Memell87
+Daniel Gaio
+
 Estudante de Análise e Desenvolvimento de Sistemas (ADS).
 
-📂 Estrutura do Repositório
-gerar_wordlist.py: Script de automação em Python.
-
-README.md: Documentação completa do desafio.
-
-/images: Prints de tela das execuções e do sucesso do ataque.
-
-Este projeto foi realizado apenas para fins educacionais em ambiente controlado.
+Este projeto possui finalidade estritamente educacional.
