@@ -28,8 +28,8 @@ Para aumentar a eficiência do ataque, desenvolvi um script em Python que gera c
 Python
 import itertools
 import time
-# O script solicita inputs do usuário e gera combinações 
-# baseadas em lógica de permutação de dados conhecidos.
+O script solicita inputs do usuário e gera combinações 
+baseadas em lógica de permutação de dados conhecidos.
 combinacoes = list(itertools.product(palavras, numeros, caracteres))
 3. Execução do Ataque com Medusa
 Com a wordlist gerada, utilizei o Medusa para testar as credenciais contra o serviço FTP do Metasploitable 2:
