@@ -1,4 +1,5 @@
 🛡️ Auditoria de Segurança: Força Bruta com Medusa e Automação em Python
+
 📝 Descrição do Desafio
 Este projeto foi desenvolvido como parte de um desafio prático na DIO (Digital Innovation One). O objetivo é simular ataques de força bruta (Brute Force) em um ambiente controlado para entender vulnerabilidades comuns e implementar medidas de mitigação eficazes.
 
